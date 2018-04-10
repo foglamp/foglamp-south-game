@@ -22,3 +22,6 @@ and you get 3 point.
 
 * If you roll the car, for example due to heavy cornering, you loose 10 points
 
+
+To register the plugin via the API use the call
+curl -X 'POST' http://localhost:8081/foglamp/service -d '{ "name" : "game", "plugin" : "envirophat_game", "type" : "south"  }'
