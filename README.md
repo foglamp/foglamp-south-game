@@ -1,9 +1,7 @@
 South plugin for Raspberry Pi Enviro pHAT for use in IoT lab game.
 ==================================================================
 
-This pugin has been designed for a game that is played with EnviroP pHAT's mounted
-on radio control cars. It feeds foglamp with readings that equate to points scored
-in the game my drivng the car and reacting to lights.
+This pugin has been designed for a game that is played with EnviroP pHAT's mounted on radio control cars. It feeds foglamp with readings that equate to points scored in the game my drivng the car and reacting to lights.
 
 The scoring works as follows:
 
@@ -22,6 +20,10 @@ and you get 3 point.
 
 * If you roll the car, for example due to heavy cornering, you loose 10 points
 
+Registering the plugin
+----------------------
 
 To register the plugin via the API use the call
+```
 curl -X 'POST' http://localhost:8081/foglamp/service -d '{ "name" : "game", "plugin" : "envirophat_game", "type" : "south"  }'
+```
