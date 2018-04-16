@@ -32,7 +32,7 @@ _DEFAULT_CONFIG = {
         'description': 'The interval between poll calls to the South device poll routine expressed in milliseconds.',
         'type': 'integer',
         'default': '100'
-    },
+    }
 }
 
 _LOGGER = logger.setup(__name__, level=20)
