@@ -10,7 +10,7 @@ import copy
 import datetime
 import json
 import uuid
-from envirophat import light, weather, motion, analog
+from envirophat import light, weather, motion, analog, leds
 
 from foglamp.common import logger
 from foglamp.plugins.common import utils
@@ -112,61 +112,95 @@ def plugin_poll(handle):
         accelerometer = [round(x,1) for x in motion.accelerometer()]
         if moving and state["light"] != "red" and rgb[0] > rgb[1] + _LIGHT_THRESHOLD and rgb[0] > rgb[2] + _LIGHT_THRESHOLD:
             data.append({
-                    'asset': 'points/red',
+                    'asset': 'points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "points": _RED_POINTS
+                        "red": _RED_POINTS,
+                        "green": 0,
+                        "blue": 0,
+                        "acceleromter": 0,
+                        "lateral": 0,
+                        "flip": 0,
                     }
                 })
             state["light"] = "red"
+            leds.on()
         elif moving and state["light"] != "green" and rgb[1] > rgb[0] + _LIGHT_THRESHOLD and rgb[1] > rgb[2] + _LIGHT_THRESHOLD:
             data.append({
-                    'asset': 'points/green',
+                    'asset': 'points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "points": _GREEN_POINTS
+                        "red": 0,
+                        "green": _GREEN_POINTS,
+                        "blue": 0,
+                        "acceleromter": 0,
+                        "lateral": 0,
+                        "flip": 0,
                     }
                 })
             state["light"] = "green"
+            leds.on()
         elif moving and state["light"] != "blue" and rgb[2] > rgb[0] + _LIGHT_THRESHOLD and rgb[2] > rgb[1] + _LIGHT_THRESHOLD:
             data.append({
-                    'asset': 'points/blue',
+                    'asset': 'points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "points": _BLUE_POINTS
+                        "red": 0,
+                        "green": 0,
+                        "blue": _BLUE_POINTS,
+                        "acceleromter": 0,
+                        "lateral": 0,
+                        "flip": 0,
                     }
                 })
             state["light"] = "blue"
+            leds.on()
         elif moving:
             state["light"] = "white"
+            leds.off()
         if abs(accelerometer[0]) > 0.1:
             data.append({
-                    'asset': 'points/accelerometer',
+                    'asset': 'points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "points": abs(accelerometer[0] * _LINEAR_FACTOR)
+                        "red": 0,
+                        "green": 0,
+                        "blue": 0,
+                        "acceleromter": abs(accelerometer[0] * _LINEAR_FACTOR),
+                        "lateral": 0,
+                        "flip": 0,
                     }
                 })
         if abs(accelerometer[1]) > 0.1:
             data.append({
-                    'asset': 'points/lateral',
+                    'asset': 'points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "points": abs(accelerometer[1] * _LATERAL_FACTOR)
+                        "red": 0,
+                        "green": 0,
+                        "blue": 0,
+                        "acceleromter": 0,
+                        "lateral": abs(accelerometer[1] * _LATERAL_FACTOR),
+                        "flip": 0
                     }
                 })
         if state["inverted"] == "No" and accelerometer[2] < -0.2:
             data.append({
-                    'asset': 'points/flip',
+                    'asset': 'points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "points": _FLIP_PENALTY
+                        "red": 0,
+                        "green": 0,
+                        "blue": 0,
+                        "acceleromter": 0,
+                        "lateral": 0,
+                        "flip": _FLIP_PENALTY
                     }
                 })
             state["inverted"] = "Yes"
