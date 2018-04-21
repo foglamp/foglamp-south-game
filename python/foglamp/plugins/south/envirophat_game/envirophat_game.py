@@ -112,48 +112,48 @@ def plugin_poll(handle):
         accelerometer = [round(x,1) for x in motion.accelerometer()]
         if moving and state["light"] != "red" and rgb[0] > rgb[1] + _LIGHT_THRESHOLD and rgb[0] > rgb[2] + _LIGHT_THRESHOLD:
             data.append({
-                    'asset': 'points',
+                    'asset': 'game/points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
                         "red": _RED_POINTS,
-                        "green": 0,
-                        "blue": 0,
-                        "acceleromter": 0,
-                        "lateral": 0,
-                        "flip": 0,
+                        "green": 0.0,
+                        "blue": 0.0,
+                        "accelerometer": 0.0,
+                        "lateral": 0.0,
+                        "flip": 0.0
                     }
                 })
             state["light"] = "red"
             leds.on()
         elif moving and state["light"] != "green" and rgb[1] > rgb[0] + _LIGHT_THRESHOLD and rgb[1] > rgb[2] + _LIGHT_THRESHOLD:
             data.append({
-                    'asset': 'points',
+                    'asset': 'game/points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "red": 0,
+                        "red": 0.0,
                         "green": _GREEN_POINTS,
-                        "blue": 0,
-                        "acceleromter": 0,
-                        "lateral": 0,
-                        "flip": 0,
+                        "blue": 0.0,
+                        "accelerometer": 0.0,
+                        "lateral": 0.0,
+                        "flip": 0.0
                     }
                 })
             state["light"] = "green"
             leds.on()
         elif moving and state["light"] != "blue" and rgb[2] > rgb[0] + _LIGHT_THRESHOLD and rgb[2] > rgb[1] + _LIGHT_THRESHOLD:
             data.append({
-                    'asset': 'points',
+                    'asset': 'game/points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "red": 0,
-                        "green": 0,
+                        "red": 0.0,
+                        "green": 0.0,
                         "blue": _BLUE_POINTS,
-                        "acceleromter": 0,
-                        "lateral": 0,
-                        "flip": 0,
+                        "accelerometer": 0.0,
+                        "lateral": 0.0,
+                        "flip": 0.0
                     }
                 })
             state["light"] = "blue"
@@ -163,43 +163,43 @@ def plugin_poll(handle):
             leds.off()
         if abs(accelerometer[0]) > 0.1:
             data.append({
-                    'asset': 'points',
+                    'asset': 'game/points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "red": 0,
-                        "green": 0,
-                        "blue": 0,
-                        "acceleromter": abs(accelerometer[0] * _LINEAR_FACTOR),
-                        "lateral": 0,
-                        "flip": 0,
+                        "red": 0.0,
+                        "green": 0.0,
+                        "blue": 0.0,
+                        "accelerometer": abs(accelerometer[0] * _LINEAR_FACTOR),
+                        "lateral": 0.0,
+                        "flip": 0.0
                     }
                 })
         if abs(accelerometer[1]) > 0.1:
             data.append({
-                    'asset': 'points',
+                    'asset': 'game/points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "red": 0,
-                        "green": 0,
-                        "blue": 0,
-                        "acceleromter": 0,
+                        "red": 0.0,
+                        "green": 0.0,
+                        "blue": 0.0,
+                        "accelerometer": 0.0,
                         "lateral": abs(accelerometer[1] * _LATERAL_FACTOR),
-                        "flip": 0
+                        "flip": 0.0
                     }
                 })
         if state["inverted"] == "No" and accelerometer[2] < -0.2:
             data.append({
-                    'asset': 'points',
+                    'asset': 'game/points',
                     'timestamp': time_stamp,
                     'key': str(uuid.uuid4()),
                     'readings': {
-                        "red": 0,
-                        "green": 0,
-                        "blue": 0,
-                        "acceleromter": 0,
-                        "lateral": 0,
+                        "red": 0.0,
+                        "green": 0.0,
+                        "blue": 0.0,
+                        "accelerometer": 0.0,
+                        "lateral": 0.0,
                         "flip": _FLIP_PENALTY
                     }
                 })
