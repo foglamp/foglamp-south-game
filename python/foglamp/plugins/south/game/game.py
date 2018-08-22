@@ -26,7 +26,7 @@ _DEFAULT_CONFIG = {
     'plugin': {
          'description': 'Enviro pHAT Poll Plugin',
          'type': 'string',
-         'default': 'envirophat_game'
+         'default': 'game'
     },
     'pollInterval': {
         'description': 'The interval between poll calls to the South device poll routine expressed in milliseconds.',

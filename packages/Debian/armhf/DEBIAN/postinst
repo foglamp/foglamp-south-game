@@ -28,24 +28,8 @@
 set -e
 
 set_files_ownership () {
-    chown -R root:root /usr/local/foglamp/python/foglamp/plugins/south/envirophat_game
-}
-
-add_service () {
-    output=$(curl -X POST http://localhost:8081/foglamp/service -d '{"name": "envirophat_game", "type": "south", "plugin": "envirophat_game"}')
-    service_id=$(echo $output | awk -F '"id": ' '{print $2}' | awk -F \" '{print $2}')
-    echo $service_id
-}
-
-enable_service () {
-    service_id=$1
-    echo $service_id
-    output=$(curl -X PUT -d '{"enabled": true}' http://localhost:8081/foglamp/schedule/$service_id)
-    echo $output
+    chown -R root:root /usr/local/foglamp/python/foglamp/plugins/south/game
 }
 
 set_files_ownership
-SERVICE_ID=$(add_service)
-echo $SERVICE_ID
-enable_service $SERVICE_ID
-echo "Restart foglamp"
+echo "Game plugin is installed"
