@@ -99,7 +99,7 @@ def plugin_poll(handle):
         DataRetrievalError
     """
 
-    time_stamp = str(datetime.datetime.now(tz=datetime.timezone.utc))
+    time_stamp = utils.local_timestamp()
     data = list()
 
     try:
