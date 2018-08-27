@@ -234,6 +234,7 @@ def plugin_reconfigure(handle, new_config):
 
     # Plugin should re-initialize and restart if key configuration is changed
     if 'pollInterval' in diff:
+        plugin_shutdown(handle)
         new_handle = copy.deepcopy(new_config)
         new_handle['restart'] = 'yes'
     else:
