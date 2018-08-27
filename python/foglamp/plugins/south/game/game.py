@@ -208,7 +208,7 @@ def plugin_poll(handle):
             state["inverted"] = "Yes"
         elif accelerometer[2] > 0.2:
             state["inverted"] = "No"
-    except (Exception, RuntimeError, pexpect.exceptions.TIMEOUT) as ex:
+    except (Exception, RuntimeError) as ex:
         _LOGGER.exception("IoT Lab Game exception: {}".format(str(ex)))
         raise exceptions.DataRetrievalError(ex)
 
@@ -235,21 +235,11 @@ def plugin_reconfigure(handle, new_config):
     # Plugin should re-initialize and restart if key configuration is changed
     if 'pollInterval' in diff:
         new_handle = copy.deepcopy(new_config)
-        new_handle['restart'] = 'no'
+        new_handle['restart'] = 'yes'
     else:
-        new_handle = copy.deepcopy(handle)
+        new_handle = copy.deepcopy(new_config)
         new_handle['restart'] = 'no'
     return new_handle
-
-
-def _plugin_stop(handle):
-    """ Stops the plugin doing required cleanup, to be called prior to the South device service being shut down.
-    Args:
-        handle: handle returned by the plugin initialisation call
-    Returns:
-    Raises:
-    """
-    _LOGGER.info('Iot Lab Game poll plugin stop.')
 
 
 def plugin_shutdown(handle):
@@ -259,5 +249,4 @@ def plugin_shutdown(handle):
     Returns:
     Raises:
     """
-    _plugin_stop(handle)
     _LOGGER.info('IoT Lab Game poll plugin shut down.')
