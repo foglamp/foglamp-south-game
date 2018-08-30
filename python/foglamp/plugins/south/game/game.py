@@ -229,17 +229,9 @@ def plugin_reconfigure(handle, new_config):
     """
     _LOGGER.info("Old config for Iot Lab Game plugin {} \n new config {}".format(handle, new_config))
 
-    # Find diff between old config and new config
-    diff = utils.get_diff(handle, new_config)
+    new_handle = copy.deepcopy(new_config)
+    new_handle['restart'] = 'no'
 
-    # Plugin should re-initialize and restart if key configuration is changed
-    if 'pollInterval' in diff:
-        plugin_shutdown(handle)
-        new_handle = plugin_init(new_config)
-        new_handle['restart'] = 'yes'
-    else:
-        new_handle = copy.deepcopy(new_config)
-        new_handle['restart'] = 'no'
     return new_handle
 
 
