@@ -10,6 +10,7 @@ import copy
 import datetime
 import json
 import uuid
+import logging
 from envirophat import light, motion, leds     # unused: weather, analog
 
 from foglamp.common import logger
@@ -32,11 +33,12 @@ _DEFAULT_CONFIG = {
     'pollInterval': {
         'description': 'The interval between poll calls to the South device poll routine expressed in milliseconds.',
         'type': 'integer',
-        'default': '100'
+        'default': '100',
+        'displayName': 'Poll Interval'
     }
 }
 
-_LOGGER = logger.setup(__name__, level=20)
+_LOGGER = logger.setup(__name__, level=logging.INFO)
 
 _LIGHT_THRESHOLD = 40
 _MAGNETOMETER_THRESHOLD = 100
