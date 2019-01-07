@@ -19,7 +19,7 @@ from foglamp.services.south import exceptions
 
 
 __author__ = "Mark Riddoch"
-__copyright__ = "Copyright (c) 2018 OSIsoft, LLC"
+__copyright__ = "Copyright (c) 2018 Dianomic Systems"
 __license__ = "Apache 2.0"
 __version__ = "${VERSION}"
 
