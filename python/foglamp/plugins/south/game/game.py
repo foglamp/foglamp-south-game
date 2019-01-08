@@ -7,7 +7,6 @@
 """ Module for IoT Lab Game 'poll' type plugin """
 
 import copy
-import datetime
 import json
 import uuid
 import logging
@@ -29,12 +28,6 @@ _DEFAULT_CONFIG = {
         'type': 'string',
         'default': 'game',
         'readonly': 'true'
-    },
-    'pollInterval': {
-        'description': 'The interval between poll calls to the South device poll routine expressed in milliseconds.',
-        'type': 'integer',
-        'default': '100',
-        'displayName': 'Poll Interval'
     }
 }
 
@@ -74,7 +67,7 @@ def plugin_info():
 def plugin_init(config):
     """ Initialise the plugin.
     Args:
-        config: JSON configuration document for the South device configuration category
+        config: JSON configuration document for the South service configuration category
     Returns:
         handle: JSON object to be used in future calls to the plugin
     Raises:
@@ -220,7 +213,7 @@ def plugin_poll(handle):
 
 def plugin_reconfigure(handle, new_config):
     """  Reconfigures the plugin
-    it should be called when the configuration of the plugin is changed during the operation of the South device service;
+    it should be called when the configuration of the plugin is changed during the operation of the South service;
     The new configuration category should be passed.
     Args:
         handle: handle returned by the plugin initialisation call
@@ -230,15 +223,12 @@ def plugin_reconfigure(handle, new_config):
     Raises:
     """
     _LOGGER.info("Old config for Iot Lab Game plugin {} \n new config {}".format(handle, new_config))
-
     new_handle = copy.deepcopy(new_config)
-    new_handle['restart'] = 'no'
-
     return new_handle
 
 
 def plugin_shutdown(handle):
-    """ Shutdowns the plugin doing required cleanup, to be called prior to the South device service being shut down.
+    """ Shutdowns the plugin doing required cleanup, to be called prior to the South service being shut down.
     Args:
         handle: handle returned by the plugin initialisation call
     Returns:
