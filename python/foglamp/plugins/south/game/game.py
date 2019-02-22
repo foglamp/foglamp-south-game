@@ -14,7 +14,6 @@ from envirophat import light, motion, leds     # unused: weather, analog
 
 from foglamp.common import logger
 from foglamp.plugins.common import utils
-from foglamp.services.south import exceptions
 
 
 __author__ = "Mark Riddoch"
@@ -205,7 +204,7 @@ def plugin_poll(handle):
             state["inverted"] = "No"
     except (Exception, RuntimeError) as ex:
         _LOGGER.exception("IoT Lab Game exception: {}".format(str(ex)))
-        raise exceptions.DataRetrievalError(ex)
+        raise ex
 
     _LOGGER.debug("IoT Lab Game reading: {}".format(json.dumps(data)))
     return data
