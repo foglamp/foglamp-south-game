@@ -90,7 +90,7 @@ def plugin_poll(handle):
         returns a sensor reading in a JSON document, as a Python dict, if it is available
         None - If no reading is available
     Raises:
-        DataRetrievalError
+        Exception
     """
 
     time_stamp = utils.local_timestamp()
@@ -205,9 +205,9 @@ def plugin_poll(handle):
     except (Exception, RuntimeError) as ex:
         _LOGGER.exception("IoT Lab Game exception: {}".format(str(ex)))
         raise ex
-
-    _LOGGER.debug("IoT Lab Game reading: {}".format(json.dumps(data)))
-    return data
+    else:
+        _LOGGER.debug("IoT Lab Game reading: {}".format(json.dumps(data)))
+        return data
 
 
 def plugin_reconfigure(handle, new_config):
