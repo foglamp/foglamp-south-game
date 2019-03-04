@@ -10,10 +10,16 @@ import copy
 import json
 import uuid
 import logging
-from envirophat import light, motion, leds     # unused: weather, analog
 
 from foglamp.common import logger
 from foglamp.plugins.common import utils
+
+_LOGGER = logger.setup(__name__, level=logging.INFO)
+
+try:
+    from envirophat import light, weather, motion       # unused: analog
+except FileNotFoundError:
+    _LOGGER.error("Ensure i2c is enabled on the Pi and other dependencies are installed correctly!")
 
 
 __author__ = "Mark Riddoch"
@@ -29,8 +35,6 @@ _DEFAULT_CONFIG = {
         'readonly': 'true'
     }
 }
-
-_LOGGER = logger.setup(__name__, level=logging.INFO)
 
 _LIGHT_THRESHOLD = 40
 _MAGNETOMETER_THRESHOLD = 100
