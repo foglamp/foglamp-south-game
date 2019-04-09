@@ -33,3 +33,9 @@ set_files_ownership () {
 
 set_files_ownership
 echo "Game plugin is installed"
+echo "IMPORTANT NOTE: To use this plugin, it is required to enable i2C on the Pi, please do the following steps:
+1) sudo raspi-config
+2) Choose advanced options
+3) Choose I2C Enable/Disable automatic loading
+4) Follow the prompts to set this to load this automatically
+5) Reboot the Pi (optional)"
