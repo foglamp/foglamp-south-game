@@ -1,7 +1,7 @@
 South plugin for Raspberry Pi Enviro pHAT for use in IoT lab game.
 ==================================================================
 
-This pugin has been designed for a game that is played with EnviroP pHAT's mounted on radio control cars. It feeds foglamp with readings that equate to points scored in the game my drivng the car and reacting to lights.
+This plugin has been designed for a game that is played with EnviroP pHAT's mounted on radio control cars. It feeds foglamp with readings that equate to points scored in the game my drivng the car and reacting to lights.
 
 The scoring works as follows:
 
