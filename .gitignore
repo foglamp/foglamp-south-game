@@ -1,3 +1,9 @@
-# Package Build
-packages/build
+# vi
+*.swp
 
+# MacOS Finder
+.DS_Store
+._*
+
+# IDE
+*.idea
