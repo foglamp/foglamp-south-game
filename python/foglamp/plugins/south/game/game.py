@@ -17,7 +17,7 @@ from foglamp.plugins.common import utils
 _LOGGER = logger.setup(__name__, level=logging.INFO)
 
 try:
-    from envirophat import light, weather, motion       # unused: analog
+    from envirophat import light, weather, motion, leds       # unused: analog
 except FileNotFoundError:
     _LOGGER.error("Ensure i2c is enabled on the Pi and other dependencies are installed correctly!")
 
@@ -59,7 +59,7 @@ def plugin_info():
 
     return {
         'name': 'IoT Lab Game Plugin',
-        'version': '1.5.0',
+        'version': '1.7.0',
         'mode': 'poll',
         'type': 'south',
         'interface': '1.0',

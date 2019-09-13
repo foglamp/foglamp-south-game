@@ -25,5 +25,5 @@ Registering the plugin
 
 To register the plugin via the API use the call
 ```
-curl -X 'POST' http://localhost:8081/foglamp/service -d '{ "name" : "game", "plugin" : "envirophat_game", "type" : "south"  }'
+curl -X 'POST' http://localhost:8081/foglamp/service -d '{ "name" : "envirophat_game", "plugin" : "game", "type" : "south", "enabled": true }'
 ```
