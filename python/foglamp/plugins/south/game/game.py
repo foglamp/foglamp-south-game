@@ -8,7 +8,6 @@
 
 import copy
 import json
-import uuid
 import logging
 
 from foglamp.common import logger
@@ -114,7 +113,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': 'game/points',
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': {
                     "red": _RED_POINTS,
                     "green": 0.0,
@@ -130,7 +128,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': 'game/points',
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': {
                     "red": 0.0,
                     "green": _GREEN_POINTS,
@@ -146,7 +143,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': 'game/points',
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': {
                     "red": 0.0,
                     "green": 0.0,
@@ -165,7 +161,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': 'game/points',
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': {
                     "red": 0.0,
                     "green": 0.0,
@@ -179,7 +174,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': 'game/points',
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': {
                     "red": 0.0,
                     "green": 0.0,
@@ -193,7 +187,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': 'game/points',
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': {
                     "red": 0.0,
                     "green": 0.0,
